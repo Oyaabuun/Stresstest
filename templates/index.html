@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPU Stress Test</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>CPU Stress Test</h1>
+        <form method="POST" action="/">
+            <label for="duration">Test Duration (seconds):</label>
+            <input type="number" name="duration" id="duration" required>
+            <button type="submit">Start Test</button>
+        </form>
+    </div>
+</body>
+</html>

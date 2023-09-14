@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Stats</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>System Stats</h1>
+        <div id="stats-container">
+            <!-- Real-time stats will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        // Function to update real-time stats using AJAX
+        function updateStats() {
+            setInterval(function() {
+                fetch("/monitor/{{ duration }}")
+                .then(response => response.json())
+                .then(data => {
+                    const statsContainer = document.getElementById("stats-container");
+                    statsContainer.innerHTML = `
+                        <p>CPU Usage: ${data['CPU Usage']}%</p>
+                        <p>RAM Usage: ${data['RAM Usage']}%</p>
+                    `;
+                });
+            }, 1000); // Update every 1 second (adjust as needed)
+        }
+
+        // Call the updateStats function when the page loads
+        window.onload = updateStats;
+    </script>
+</body>
+</html>
